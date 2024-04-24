@@ -66,6 +66,21 @@ begin
         Registers[rd] <= writeData ;
 end
 
+always @(reset)
+begin
+    if (reset == 1'b1)
+        begin
+            readData1 <= 64'd0;
+            readData2 <= 64'd0;
+        end   
+    else // added else so data read when reset turned off
+        begin
+            readData1 = Registers[rs1];
+            readData2 = Registers[rs2];
+        end 
+end
+
+
 always @(*)
 begin
     if (reset)
@@ -73,11 +88,5 @@ begin
             readData1 <= 64'd0;
             readData2 <= 64'd0;
         end    
-    else
-        begin
-            readData1 = Registers[rs1];
-            readData2 = Registers[rs2];
-        end
-
 end   
 endmodule
