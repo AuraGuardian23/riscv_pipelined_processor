@@ -6,7 +6,8 @@ module ALU_64_bit(
     input [63:0] b,
     input [3:0] ALUOp,
     output reg [63:0] Result,
-    output reg zero
+    output reg zero,
+    output reg lt
 );
 
         
@@ -46,6 +47,7 @@ begin
     
     // calculation for zero
     zero = ~(|Result) ; // take bitwise or all values in result and invert it
+    lt = (a < b);       // if a < b, lt = 1
     
 end
 

@@ -28,7 +28,7 @@ begin
                 endcase
             end
         
-        2'b01: // beq
+        2'b01: // beq & blt
             Operation <= 4'b0110;
         
         2'b10: // r type

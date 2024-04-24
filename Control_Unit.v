@@ -46,7 +46,7 @@ begin
                 ALUOp <= 2'd0;
                 Branch <= 1'b0;
             end
-        3'b110: // beq
+        3'b110: // beq & blt
             begin
                 MemToReg <= 1'bx;
                 MemRead <= 1'b0;

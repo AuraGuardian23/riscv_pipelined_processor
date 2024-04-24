@@ -34,6 +34,7 @@ wire [1:0] ALUOp;
 wire [63:0] ALU_op2; // used for 2nd input to ALU
 wire [3:0] Operation; // passed to ALU
 wire Zero;
+wire lt;
 wire [63:0] Result;
 
 wire [63:0] branchOffset = {imm_data[62:0], 1'b0};
@@ -59,11 +60,11 @@ registerFile rf(writeData, rs1, rs2, rd, RegWrite, clk, reset, readData1, readDa
 mux2to1 alu_mux(readData2, imm_data, ALUSrc, ALU_op2);
 // reg [3:0] Funct = {Instruction[20], Instruction[14:12]}; // used below
 ALU_Control au(ALUOp, {Instruction[30], Instruction[14:12]}, Operation);
-ALU_64_bit ALU(readData1, ALU_op2, Operation, Result, Zero);
+ALU_64_bit ALU(readData1, ALU_op2, Operation, Result, Zero, lt);
 
 // MEM stage;
 Adder adder2(PC_out, branchOffset, branch_pc);
-mux2to1 pc_mux(PC_next, branch_pc, (Branch & Zero) , PC_in); // may need new input name for pc_in
+mux2to1 pc_mux(PC_next, branch_pc, (Branch & (Zero | lt)) , PC_in); // may need new input name for pc_in
 Data_Memory dm(Result, readData2, clk, MemWrite, MemRead, MemData);
     
 // WB stage
