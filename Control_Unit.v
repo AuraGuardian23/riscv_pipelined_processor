@@ -56,7 +56,7 @@ begin
                 ALUOp <= 2'b01;
                 Branch <= 1'b1;
             end
-        3'b001: // addi
+        3'b001: // addi & slli
             begin
                 MemToReg <= 1'b0;
                 MemRead <= 1'b0;

@@ -38,6 +38,10 @@ begin
             Result = ~a & ~b ;
         end
         
+        4'b1111: // shift left
+        begin
+            Result = a << b;
+        end
     endcase
     
     // calculation for zero
