@@ -110,6 +110,7 @@ Data_Memory dm(EXMEM_ALU_Result, readData2, clk, EXMEM_MemWrite, EXMEM_MemRead, 
 // carry forward values from prev register
 assign MEMWB_RegWrite = EXMEM_RegWrite;
 assign MEMWB_MemToReg = EXMEM_MemToReg;
+assign MEMWB_ALU_Result = EXMEM_ALU_Result;
 
 // WB stage
 mux2to1 reg_mux(MEMWB_ALU_Result, MEMWB_MemData, MEMWB_MemToReg, writeData);
