@@ -64,7 +64,7 @@ ALU_64_bit ALU(readData1, ALU_op2, Operation, Result, Zero, lt);
 
 // MEM stage;
 Adder adder2(PC_out, branchOffset, branch_pc);
-mux2to1 pc_mux(PC_next, branch_pc, (Branch & (Zero | lt)) , PC_in); // may need new input name for pc_in
+mux2to1 pc_mux(PC_next, branch_pc, (Branch & ((Zero & funct3[2] == 1'b0) | ( lt & funct3[2] == 1'b1))) , PC_in); // may need new input name for pc_in
 Data_Memory dm(Result, readData2, clk, MemWrite, MemRead, MemData);
     
 // WB stage

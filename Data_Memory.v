@@ -14,10 +14,10 @@ reg [7:0] Memory [63:0];
 
 initial
      begin
-       Memory[0] <= 8'd1;
-    Memory[1] <= 8'd2;
-    Memory[2] <= 8'd3;
-    Memory[3] <= 8'd4;
+    Memory[0] <= 8'd9;
+    Memory[1] <= 8'd8;
+    Memory[2] <= 8'd7;
+    Memory[3] <= 8'd6;
     Memory[4] <= 8'd5;
     Memory[5] <= 8'd6;
     Memory[6] <= 8'd7;

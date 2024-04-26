@@ -17,7 +17,7 @@ reg [63:0] Registers [31:0];
 
 initial begin
 
-    Registers[0] <= 64'd1;
+    Registers[0] <= 64'd0;
     Registers[1] <= 64'd2;
     Registers[2] <= 64'd3;
     Registers[3] <= 64'd4;
@@ -83,10 +83,7 @@ end
 
 always @(*)
 begin
-    if (reset)
-        begin
-            readData1 <= 64'd0;
-            readData2 <= 64'd0;
-        end    
+    readData1 = Registers[rs1];
+    readData2 = Registers[rs2];    
 end   
 endmodule
