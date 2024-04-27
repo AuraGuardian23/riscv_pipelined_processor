@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="278780fs"></ZoomStartTime>
-      <ZoomEndTime time="405781fs"></ZoomEndTime>
-      <Cursor1Time time="316380fs"></Cursor1Time>
+      <ZoomStartTime time="816620fs"></ZoomStartTime>
+      <ZoomEndTime time="996221fs"></ZoomEndTime>
+      <Cursor1Time time="963380fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="120"></ValueColumnWidth>
+      <ValueColumnWidth column_width="116"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="35" />
+   <WVObjectSize size="27" />
    <wvobject fp_name="/riscv_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -27,10 +27,6 @@
    <wvobject fp_name="/riscv_tb/reset" type="logic">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
-   </wvobject>
-   <wvobject fp_name="/riscv_tb/riscv_proc/dm/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
    <wvobject fp_name="/riscv_tb/riscv_proc/dm/MemRead" type="logic">
       <obj_property name="ElementShortName">MemRead</obj_property>
@@ -44,274 +40,6 @@
       <obj_property name="ElementShortName">Memory[63:0][7:0]</obj_property>
       <obj_property name="ObjectShortName">Memory[63:0][7:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[63]" type="array">
-         <obj_property name="ElementShortName">[63][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[63][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[62]" type="array">
-         <obj_property name="ElementShortName">[62][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[62][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[61]" type="array">
-         <obj_property name="ElementShortName">[61][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[61][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[60]" type="array">
-         <obj_property name="ElementShortName">[60][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[60][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[59]" type="array">
-         <obj_property name="ElementShortName">[59][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[59][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[58]" type="array">
-         <obj_property name="ElementShortName">[58][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[58][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[57]" type="array">
-         <obj_property name="ElementShortName">[57][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[57][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[56]" type="array">
-         <obj_property name="ElementShortName">[56][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[56][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[55]" type="array">
-         <obj_property name="ElementShortName">[55][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[55][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[54]" type="array">
-         <obj_property name="ElementShortName">[54][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[54][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[53]" type="array">
-         <obj_property name="ElementShortName">[53][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[53][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[52]" type="array">
-         <obj_property name="ElementShortName">[52][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[52][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[51]" type="array">
-         <obj_property name="ElementShortName">[51][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[51][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[50]" type="array">
-         <obj_property name="ElementShortName">[50][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[50][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[49]" type="array">
-         <obj_property name="ElementShortName">[49][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[49][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[48]" type="array">
-         <obj_property name="ElementShortName">[48][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[48][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[47]" type="array">
-         <obj_property name="ElementShortName">[47][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[47][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[46]" type="array">
-         <obj_property name="ElementShortName">[46][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[46][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[45]" type="array">
-         <obj_property name="ElementShortName">[45][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[45][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[44]" type="array">
-         <obj_property name="ElementShortName">[44][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[44][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[43]" type="array">
-         <obj_property name="ElementShortName">[43][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[43][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[42]" type="array">
-         <obj_property name="ElementShortName">[42][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[42][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[41]" type="array">
-         <obj_property name="ElementShortName">[41][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[41][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[40]" type="array">
-         <obj_property name="ElementShortName">[40][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[40][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[39]" type="array">
-         <obj_property name="ElementShortName">[39][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[39][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[38]" type="array">
-         <obj_property name="ElementShortName">[38][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[38][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[37]" type="array">
-         <obj_property name="ElementShortName">[37][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[37][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[36]" type="array">
-         <obj_property name="ElementShortName">[36][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[36][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[35]" type="array">
-         <obj_property name="ElementShortName">[35][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[35][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[34]" type="array">
-         <obj_property name="ElementShortName">[34][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[34][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[33]" type="array">
-         <obj_property name="ElementShortName">[33][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[33][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[32]" type="array">
-         <obj_property name="ElementShortName">[32][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[32][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[31]" type="array">
-         <obj_property name="ElementShortName">[31][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[31][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[30]" type="array">
-         <obj_property name="ElementShortName">[30][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[30][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[29]" type="array">
-         <obj_property name="ElementShortName">[29][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[29][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[28]" type="array">
-         <obj_property name="ElementShortName">[28][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[28][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[27]" type="array">
-         <obj_property name="ElementShortName">[27][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[27][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[26]" type="array">
-         <obj_property name="ElementShortName">[26][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[26][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[25]" type="array">
-         <obj_property name="ElementShortName">[25][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[25][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[24]" type="array">
-         <obj_property name="ElementShortName">[24][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[24][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[23]" type="array">
-         <obj_property name="ElementShortName">[23][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[23][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[22]" type="array">
-         <obj_property name="ElementShortName">[22][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[22][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[21]" type="array">
-         <obj_property name="ElementShortName">[21][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[21][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[20]" type="array">
-         <obj_property name="ElementShortName">[20][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[20][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[19]" type="array">
-         <obj_property name="ElementShortName">[19][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[19][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[18]" type="array">
-         <obj_property name="ElementShortName">[18][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[18][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[17]" type="array">
-         <obj_property name="ElementShortName">[17][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[17][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[16]" type="array">
-         <obj_property name="ElementShortName">[16][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[16][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[15]" type="array">
-         <obj_property name="ElementShortName">[15][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[15][7:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[14]" type="array">
-         <obj_property name="ElementShortName">[14][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[14][7:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[13]" type="array">
-         <obj_property name="ElementShortName">[13][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[13][7:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[12]" type="array">
-         <obj_property name="ElementShortName">[12][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[12][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[11]" type="array">
-         <obj_property name="ElementShortName">[11][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[11][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[10]" type="array">
-         <obj_property name="ElementShortName">[10][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[10][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[9]" type="array">
-         <obj_property name="ElementShortName">[9][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[9][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[8]" type="array">
-         <obj_property name="ElementShortName">[8][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[8][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[7]" type="array">
-         <obj_property name="ElementShortName">[7][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[7][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[6]" type="array">
-         <obj_property name="ElementShortName">[6][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[6][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[5]" type="array">
-         <obj_property name="ElementShortName">[5][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[5][7:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[4]" type="array">
-         <obj_property name="ElementShortName">[4][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[4][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[3]" type="array">
-         <obj_property name="ElementShortName">[3][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[3][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[2]" type="array">
-         <obj_property name="ElementShortName">[2][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[2][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[1]" type="array">
-         <obj_property name="ElementShortName">[1][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[1][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/riscv_tb/riscv_proc/dm/Memory[0]" type="array">
-         <obj_property name="ElementShortName">[0][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[0][7:0]</obj_property>
-      </wvobject>
-   </wvobject>
-   <wvobject fp_name="/riscv_tb/riscv_proc/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/riscv_tb/riscv_proc/reset" type="logic">
-      <obj_property name="ElementShortName">reset</obj_property>
-      <obj_property name="ObjectShortName">reset</obj_property>
    </wvobject>
    <wvobject fp_name="/riscv_tb/riscv_proc/PC_out" type="array">
       <obj_property name="ElementShortName">PC_out[63:0]</obj_property>
@@ -399,26 +127,6 @@
    <wvobject fp_name="/riscv_tb/riscv_proc/Result" type="array">
       <obj_property name="ElementShortName">Result[63:0]</obj_property>
       <obj_property name="ObjectShortName">Result[63:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/riscv_tb/riscv_proc/branchOffset" type="array">
-      <obj_property name="ElementShortName">branchOffset[63:0]</obj_property>
-      <obj_property name="ObjectShortName">branchOffset[63:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/riscv_tb/riscv_proc/branch_pc" type="array">
-      <obj_property name="ElementShortName">branch_pc[63:0]</obj_property>
-      <obj_property name="ObjectShortName">branch_pc[63:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/riscv_tb/riscv_proc/pc_sel" type="logic">
-      <obj_property name="ElementShortName">pc_sel</obj_property>
-      <obj_property name="ObjectShortName">pc_sel</obj_property>
-   </wvobject>
-   <wvobject fp_name="/riscv_tb/riscv_proc/MemData" type="array">
-      <obj_property name="ElementShortName">MemData[63:0]</obj_property>
-      <obj_property name="ObjectShortName">MemData[63:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/riscv_tb/riscv_proc/writeData" type="array">
-      <obj_property name="ElementShortName">writeData[63:0]</obj_property>
-      <obj_property name="ObjectShortName">writeData[63:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/riscv_tb/riscv_proc/rf/Registers" type="array">
       <obj_property name="ElementShortName">Registers[31:0][63:0]</obj_property>
@@ -523,12 +231,12 @@
       <wvobject fp_name="/riscv_tb/riscv_proc/rf/Registers[7]" type="array">
          <obj_property name="ElementShortName">[7][63:0]</obj_property>
          <obj_property name="ObjectShortName">[7][63:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/riscv_tb/riscv_proc/rf/Registers[6]" type="array">
          <obj_property name="ElementShortName">[6][63:0]</obj_property>
          <obj_property name="ObjectShortName">[6][63:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/riscv_tb/riscv_proc/rf/Registers[5]" type="array">
          <obj_property name="ElementShortName">[5][63:0]</obj_property>

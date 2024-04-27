@@ -51,15 +51,18 @@ wire [63:0] IFID_PC_next, IFID_PC_out;
 
 // ID/EX pipelined registers
 wire [31:0] IDEX_Instruction;
-wire [63:0] IDEX_readData1, IDEX_readData2, IDEX_PC_next, IDEX_PC_out, IDEX_imm_data; 
+wire [4:0] IDEX_rs1, IDEX_rs2;
+wire [63:0] IDEX_readData1, IDEX_readData2, IDEX_PC_next, IDEX_PC_out, IDEX_imm_data, IDEX_rd; 
 
 // EX/MEM pipelined registers
-wire [63:0] EXMEM_ALU_Result, EXMEM_PC_next, EXMEM_PC_out, EXMEM_imm_data;
+wire [63:0] EXMEM_ALU_Result, EXMEM_PC_next, EXMEM_PC_out, EXMEM_imm_data, EXMEM_rd;
 wire EXMEM_Zero;
+wire [1:0] selFA, selFB;
+wire [63:0] data_out_FA, data_out_FB;
 // EXMEM_imm_data will be used to calculate branchOffset for use in MEM
 
 // MEM/WB pipelined registers
-wire [63:0] MEMWB_ALU_Result, MEMWB_MemData;
+wire [63:0] MEMWB_ALU_Result, MEMWB_MemData, MEMWB_rd;
 
 // pipeline control signals
 wire [1:0] IDEX_ALUOp;
@@ -73,26 +76,34 @@ Adder adder1(IFID_PC_out, 64'h4, IFID_PC_next); // this PC_next goes to pc_mux i
 Instruction_Memory im(IFID_PC_out, IFID_Instruction);
 
 // ID stage
-Rtype_parser instParser(IFID_Instruction, opcode, funct7, rd, rs1, rs2, funct3);
+Rtype_parser instParser(IFID_Instruction, opcode, funct7, IDEX_rd, rs1, rs2, funct3);
 imm_data_gen immgen(IFID_Instruction, IDEX_imm_data);
 Control_Unit cu(opcode, IDEX_Branch, IDEX_MemRead, IDEX_MemToReg, IDEX_ALUOp, IDEX_MemWrite, IDEX_ALUSrc, IDEX_RegWrite);
-registerFile rf(writeData, rs1, rs2, rd, EXMEM_RegWrite, clk, reset, IDEX_readData1, IDEX_readData2); 
+registerFile rf(writeData, rs1, rs2, MEMWB_rd, MEMWB_RegWrite, clk, reset, IDEX_readData1, IDEX_readData2); 
+mux3to1 m31 (IDEX_readData1,writeData,EXMEM_ALU_Result, selFA, data_out_FA  );
+mux3to1 m32 (IDEX_readData2 ,writeData,EXMEM_ALU_Result, selFB, data_out_FB  );
 
 // carry forward values from prev register
 assign IDEX_PC_out = IFID_PC_out;
 assign IDEX_PC_next = IFID_PC_next;
 assign IDEX_Instruction = IFID_Instruction;
+assign IDEX_rs1 = rs1;
+assign IDEX_rs2 = rs2;
 
 // EX stage
-mux2to1 alu_mux(IDEX_readData2, IDEX_imm_data, IDEX_ALUSrc, ALU_op2);
+mux2to1 alu_mux(data_out_FB, IDEX_imm_data, IDEX_ALUSrc, ALU_op2);
 // reg [3:0] Funct = {Instruction[20], Instruction[14:12]}; // used below
 ALU_Control au(IDEX_ALUOp, {IDEX_Instruction[30], IDEX_Instruction[14:12]}, Operation);
-ALU_64_bit ALU(IDEX_readData1, ALU_op2, Operation, EXMEM_ALU_Result, EXMEM_Zero);
+//ALU_64_bit ALU(IDEX_readData1, ALU_op2, Operation, EXMEM_ALU_Result, EXMEM_Zero);
+ALU_64_bit ALU(data_out_FA, ALU_op2, Operation, EXMEM_ALU_Result, EXMEM_Zero);
+// Forwarding Unit
+fwdUnit fu ( EXMEM_rd, MEMWB_rd, IDEX_rs1, IDEX_rs2, EXMEM_RegWrite,EXMEM_MemToReg, MEMWB_RegWrite, selFA, selFB );
 
 // carry forward values from prev register
 assign EXMEM_PC_out = IDEX_PC_out;
 assign EXMEM_PC_next = IDEX_PC_next;
 assign EXMEM_imm_data = IDEX_imm_data;
+assign EXMEM_rd = IDEX_rd;
 
 assign EXMEM_Branch = IDEX_Branch;
 assign EXMEM_MemRead = IDEX_MemRead;
@@ -111,7 +122,7 @@ Data_Memory dm(EXMEM_ALU_Result, readData2, clk, EXMEM_MemWrite, EXMEM_MemRead, 
 assign MEMWB_RegWrite = EXMEM_RegWrite;
 assign MEMWB_MemToReg = EXMEM_MemToReg;
 assign MEMWB_ALU_Result = EXMEM_ALU_Result;
-
+assign MEMWB_rd = EXMEM_rd;
 // WB stage
 mux2to1 reg_mux(MEMWB_ALU_Result, MEMWB_MemData, MEMWB_MemToReg, writeData);
     

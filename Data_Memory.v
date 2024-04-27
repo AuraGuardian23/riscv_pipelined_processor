@@ -168,7 +168,7 @@ initial
 
 //end
 
-always@ (*)
+always @ (*)
     begin
         if (MemWrite == 1'b1)
             begin
