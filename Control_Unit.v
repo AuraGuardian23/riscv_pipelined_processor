@@ -1,84 +1,71 @@
 `timescale 1ns / 1ps
 
-
 module Control_Unit(
     input [6:0] Opcode,
-    output reg Branch,
-    output reg MemRead,
-    output reg MemToReg,
-    output reg [1:0] ALUOp,
-    output reg MemWrite,
-    output reg ALUSrc,
-    output reg RegWrite
+    output reg Branch, MemRead, MemToReg, MemWrite, ALUSrc, RegWrite,
+    output reg [1:0] ALUOp
     );
-    
-always@(*)
-begin
-    case (Opcode[6:4])
-        3'b011: // r type
+    always @(*)
+    begin
+        if (Opcode == 7'b0110011) //RType
             begin
-                ALUSrc <= 1'b0;
-                MemToReg <= 1'b0;
-                MemRead <= 1'b0;
-                MemWrite <= 1'b0;
-                RegWrite <= 1'b1;
-                ALUOp <= 2'b10;
-                Branch <= 1'b0;
+            ALUSrc <= 0;
+            MemToReg <= 0;
+            RegWrite <= 1;
+            MemRead <= 0;
+            MemWrite <= 0;
+            Branch <= 0;
+            ALUOp <= 2'b10;
             end
-        
-        3'b000: // ld
+        if (Opcode == 7'b0000011) //IType 
             begin
-                ALUSrc <= 1'b1;
-                MemToReg <= 1'b1;
-                MemRead <= 1'b1;
-                MemWrite <= 1'b0;
-                RegWrite <= 1'b1;
-                ALUOp <= 2'd0;
-                Branch <= 1'b0;
+            ALUSrc <= 1;
+            MemToReg <= 1;
+            RegWrite <= 1;
+            MemRead <= 1;
+            MemWrite <= 0;
+            Branch <= 0;
+            ALUOp <= 2'b00;
             end
-        3'b010: // sd
+        if (Opcode == 7'b0100011) //SType
             begin
-                ALUSrc <= 1'b1;
-                MemToReg <= 1'bx;
-                MemRead <= 1'b0;
-                MemWrite <= 1'b1;
-                RegWrite <= 1'b0;
-                ALUOp <= 2'd0;
-                Branch <= 1'b0;
+            ALUSrc <= 1;
+            MemToReg <= 1'bx;
+            RegWrite <= 0;
+            MemRead <= 0;
+            MemWrite <= 1;
+            Branch <= 0;
+            ALUOp <= 2'b00;
             end
-        3'b110: // beq & blt
+        if (Opcode == 7'b1100011) //SBType - beq/blt
             begin
-                MemToReg <= 1'bx;
-                MemRead <= 1'b0;
-                MemWrite <= 1'b0;
-                ALUSrc <= 1'b0;
-                RegWrite <= 1'b0;
-                ALUOp <= 2'b01;
-                Branch <= 1'b1;
+            ALUSrc <= 0;
+            MemToReg <= 1'bx;
+            RegWrite <= 0;
+            MemRead <= 0;
+            MemWrite <= 0;
+            Branch <= 1;
+            ALUOp <= 2'b01;
             end
-        3'b001: // addi & slli
+        if (Opcode == 7'b0010011) // addi/sll
             begin
-                MemToReg <= 1'b0;
-                MemRead <= 1'b0;
-                MemWrite <= 1'b0;
-                ALUSrc <= 1'b1;
-                RegWrite <= 1'b1;
-                ALUOp <= 2'd0;
-                Branch <= 1'b0;
+            ALUSrc <= 1;
+            MemToReg <= 0;
+            RegWrite <= 1;
+            MemRead <= 0;
+            MemWrite <= 0;
+            Branch <= 0;
+            ALUOp <= 2'b11;
             end
-        default:
+        if (Opcode == 7'b0000000) // NOP
             begin
-                ALUSrc <= 1'b0;
-                MemToReg <= 1'b0;
-                MemRead <= 1'b0;
-                MemWrite <= 1'b0;
-                ALUSrc <= 1'b0;
-                RegWrite <= 1'b0;
-                ALUOp <= 2'd0;
+            ALUSrc <= 0;
+            MemToReg <= 0;
+            RegWrite <= 0;
+            MemRead <= 0;
+            MemWrite <= 0;
+            Branch <= 0;
+            ALUOp <= 2'b00;
             end
-            
-    
-    endcase
-end    
-    
+    end
 endmodule

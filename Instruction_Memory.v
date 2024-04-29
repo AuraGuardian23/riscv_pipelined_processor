@@ -1,144 +1,266 @@
 `timescale 1ns / 1ps
-
 module Instruction_Memory(
-    input [63:0] Inst_Address,
-    output reg [31:0] Instruction 
-    );
-    
-reg [7:0] Memory [79:0];
+input [63:0] Instr_Addr,
+output reg [31:0] Instruction
+);
 
-initial
-     begin
-        Memory[0] <= 8'h13; // addi x10, x0, 0
-        Memory[1] <= 8'h05;
-        Memory[2] <= 8'h00;
-        Memory[3] <= 8'h00;
-        Memory[4] <= 8'h93; // addi x11, x0, 4
-        Memory[5] <= 8'h05;
-        Memory[6] <= 8'h40;
-        Memory[7] <= 8'h00;
-        Memory[8] <= 8'h93; // addi x21, x10, 0
-        Memory[9] <= 8'h0a;
-        Memory[10] <= 8'h05;
-        Memory[11] <= 8'h00;
-        Memory[12] <= 8'h13; // addi x22, x11, 0
-        Memory[13] <= 8'h8b;
-        Memory[14] <= 8'h05;
-        Memory[15] <= 8'h00;
-        Memory[16] <= 8'h93; // addi x19, x0, 0
-        Memory[17] <= 8'h09;
-        Memory[18] <= 8'h00;
-        Memory[19] <= 8'h00;
-        Memory[20] <= 8'h63; // blt x19, x22, 8 (continue)
-        Memory[21] <= 8'hc4;
-        Memory[22] <= 8'h69;
-        Memory[23] <= 8'h01;
-        Memory[24] <= 8'h63; // beq x0, x0, 56 (finish) 
-        Memory[25] <= 8'h0c;
-        Memory[26] <= 8'h00;
-        Memory[27] <= 8'h02;
-        Memory[28] <= 8'h13; // addi x20, x19, -1 # continue
-        Memory[29] <= 8'h8a;
-        Memory[30] <= 8'hf9;
-        Memory[31] <= 8'hff;
-        Memory[32] <= 8'h63; // blt x20, x0, 40 (exit2)
-        Memory[33] <= 8'h44;
-        Memory[34] <= 8'h0a;
-        Memory[35] <= 8'h02;
-        Memory[36] <= 8'h93; // slli
-        Memory[37] <= 8'h12;
-        Memory[38] <= 8'h3a;
-        Memory[39] <= 8'h00;
-        Memory[40] <= 8'hb3;  
-        Memory[41] <= 8'h82;
-        Memory[42] <= 8'h5a;
-        Memory[43] <= 8'h00;
-        Memory[44] <= 8'h03; // ld x6, 0(x5)
-        Memory[45] <= 8'hb3;
-        Memory[46] <= 8'h02;
-        Memory[47] <= 8'h00;
-        Memory[48] <= 8'h83; // ld x7, 8(x5)
-        Memory[49] <= 8'hb3;
-        Memory[50] <= 8'h82;
-        Memory[51] <= 8'h00;
-        Memory[52] <= 8'h63; // blt x6, x7, exit2
-        Memory[53] <= 8'h4a;
-        Memory[54] <= 8'h73;
-        Memory[55] <= 8'h00;
-        Memory[56] <= 8'h23; // sd x7, 0(x5)  
-        Memory[57] <= 8'hb0;
-        Memory[58] <= 8'h72;
-        Memory[59] <= 8'h00;
-        Memory[60] <= 8'h23; // sd x6, 8(x5)
-        Memory[61] <= 8'hb4;
-        Memory[62] <= 8'h62;
-        Memory[63] <= 8'h00;
-        Memory[64] <= 8'h13; // addi x20, x20, -1
-        Memory[65] <= 8'h0a;
-        Memory[66] <= 8'hfa;
-        Memory[67] <= 8'hff;
-        Memory[68] <= 8'he3; // beq x0, x0, for2
-        Memory[69] <= 8'h0e;
-        Memory[70] <= 8'h00;
-        Memory[71] <= 8'hfc;
-        Memory[72] <= 8'h93; // addi x19, x19, 1
-        Memory[73] <= 8'h89;
-        Memory[74] <= 8'h19;
-        Memory[75] <= 8'h00;
-        Memory[76] <= 8'he3; // beq x0, x0, For1
-        Memory[77] <= 8'h04;
-        Memory[78] <= 8'h00;
-        Memory[79] <= 8'hfc;
-//        Memory[80] <= 8'h00;
-//        Memory[81] <= 8'h00;
-//        Memory[82] <= 8'h00;
-//        Memory[83] <= 8'h00;
-//        Memory[84] <= 8'h00;
-//        Memory[85] <= 8'h00;
-//        Memory[86] <= 8'h00;
-//        Memory[87] <= 8'h00;
-//        Memory[88] <= 8'h00;
-//        Memory[89] <= 8'h00;
-//        Memory[90] <= 8'h00;
-//        Memory[91] <= 8'h00;
-//        Memory[92] <= 8'h00;
-//        Memory[93] <= 8'h00;
-//        Memory[94] <= 8'h00;
-//        Memory[95] <= 8'h00;
-//        Memory[96] <= 8'h00;
-//        Memory[97] <= 8'h00;
-//        Memory[98] <= 8'h00;
-//        Memory[99] <= 8'h00;
-//        Memory[100] <= 8'h00;
-//        Memory[101] <= 8'h00;
-//        Memory[102] <= 8'h00;
-//        Memory[103] <= 8'h00;
-//        Memory[104] <= 8'h00;
-//        Memory[105] <= 8'h00;
-//        Memory[106] <= 8'h00;
-//        Memory[107] <= 8'h00;
-//        Memory[108] <= 8'h00;
-//        Memory[109] <= 8'h00;
-//        Memory[110] <= 8'h00;
-//        Memory[111] <= 8'h00;
-//        Memory[112] <= 8'h00;
-//        Memory[113] <= 8'h00;
-//        Memory[114] <= 8'h00;
-//        Memory[115] <= 8'h00;
-//        Memory[116] <= 8'h00;
-//        Memory[117] <= 8'h00;
-//        Memory[118] <= 8'h00;
-//        Memory[119] <= 8'h00;
-//        Memory[120] <= 8'h00;
-                    
-     end
-    
-always @(Inst_Address)
-    begin
-        Instruction[31:24] <= Memory[Inst_Address + 3];
-        Instruction[23:16] <= Memory[Inst_Address + 2];
-        Instruction[15:8] <= Memory[Inst_Address + 1];
-        Instruction[7:0] <= Memory[Inst_Address];
-    end
-        
+reg [7:0] IM [255:0];
+initial 
+begin
+// addi x10 x0 0x100
+//IM[0] <= 8'h13;
+//IM[1] <= 8'h05;
+//IM[2] <= 8'h00;
+//IM[3] <= 8'h10;
+
+// ld x9 0x100(x0)
+//IM[0] <= 8'h83;
+//IM[1] <= 8'h34;
+//IM[2] <= 8'h00;
+//IM[3] <= 8'h10;
+
+// add x10 x9 x9
+//IM[4] <= 8'h33;
+//IM[5] <= 8'h85;
+//IM[6] <= 8'h94;
+//IM[7] <= 8'h00;
+
+// load hazard + forwarding
+// ld x2 0x100(x0)
+// IM[0] <= 8'h03;
+// IM[1] <= 8'h31;
+// IM[2] <= 8'h00;
+// IM[3] <= 8'h10;
+
+// addi x2 x0 50
+//IM[0] <= 8'h13;
+//IM[1] <= 8'h01;
+//IM[2] <= 8'h20;
+//IM[3] <= 8'h03;
+
+//// add x3 x2 x2
+// IM[4] <= 8'hb3;
+// IM[5] <= 8'h01;
+// IM[6] <= 8'h21;
+// IM[7] <= 8'h00;
+
+//// add x4 x3 x2
+// IM[8] <= 8'h33;
+// IM[9] <= 8'h82;
+// IM[10] <= 8'h21;
+// IM[11] <= 8'h00;
+
+//// add x4 x2 x2
+// IM[12] <= 8'h33;
+// IM[13] <= 8'h02;
+// IM[14] <= 8'h21;
+// IM[15] <= 8'h00;
+
+// control hazard
+////beq x0 x0 20
+// IM[0] <= 8'h63;	
+// IM[1] <= 8'h0a;	
+// IM[2] <= 8'h00;	
+// IM[3] <= 8'h00;	
+
+////addi x1 x0 2	
+// IM[4] <= 8'h93;	
+// IM[5] <= 8'h00;	
+// IM[6] <= 8'h20;	
+// IM[7] <= 8'h00;	
+
+////addi x1 x0 3	
+// IM[8] <= 8'h93;	
+// IM[9] <= 8'h00;	
+// IM[10] <= 8'h30;	
+// IM[11] <= 8'h00;	
+
+////addi x1, x0, 4
+// IM[12] <= 8'h93;	
+// IM[13] <= 8'h00;	
+// IM[14] <= 8'h40;	
+// IM[15] <= 8'h00;	
+
+////addi x1 x0 5
+// IM[16] <= 8'h93;	
+// IM[17] <= 8'h00;	
+// IM[18] <= 8'h50;	
+// IM[19] <= 8'h00;	
+
+////addi x1 x0 6
+// IM[20] <= 8'h93;	
+// IM[21] <= 8'h00;	
+// IM[22] <= 8'h60;	
+// IM[23] <= 8'h00;	
+
+// Bubble Sort
+// IM[0] <= 8'h13;
+// IM[1] <= 8'h05;
+// IM[2] <= 8'h00;
+// IM[3] <= 8'h10;
+// IM[4] <= 8'h93;
+// IM[5] <= 8'h05;
+// IM[6] <= 8'h40;
+// IM[7] <= 8'h00;
+// IM[8] <= 8'h63;
+// IM[9] <= 8'h02;
+// IM[10] <= 8'h05;
+// IM[11] <= 8'h04;
+// IM[12] <= 8'h63;
+// IM[13] <= 8'h80;
+// IM[14] <= 8'h05;
+// IM[15] <= 8'h04;
+// IM[16] <= 8'h13;
+// IM[17] <= 8'h84;
+// IM[18] <= 8'h15;
+// IM[19] <= 8'h00;
+// IM[20] <= 8'h13;
+// IM[21] <= 8'h04;
+// IM[22] <= 8'hf4;
+// IM[23] <= 8'hff;
+// IM[24] <= 8'h63;
+// IM[25] <= 8'h0a;
+// IM[26] <= 8'h04;
+// IM[27] <= 8'h02;
+// IM[28] <= 8'h13;
+// IM[29] <= 8'h04;
+// IM[30] <= 8'hf4;
+// IM[31] <= 8'hff;
+// IM[32] <= 8'hb3;
+// IM[33] <= 8'h04;
+// IM[34] <= 8'h00;
+// IM[35] <= 8'h00;
+// IM[36] <= 8'h13;
+// IM[37] <= 8'h9e;
+// IM[38] <= 8'h34;
+// IM[39] <= 8'h00;
+// IM[40] <= 8'h33;
+// IM[41] <= 8'h0e;
+// IM[42] <= 8'hae;
+// IM[43] <= 8'h00;
+// IM[44] <= 8'h03;
+// IM[45] <= 8'h3a;
+// IM[46] <= 8'h0e;
+// IM[47] <= 8'h00;
+// IM[48] <= 8'h83;
+// IM[49] <= 8'h3a;
+// IM[50] <= 8'h8e;
+// IM[51] <= 8'h00;
+// IM[52] <= 8'h63;
+// IM[53] <= 8'h46;
+// IM[54] <= 8'h5a;
+// IM[55] <= 8'h01;
+// IM[56] <= 8'h23;
+// IM[57] <= 8'h30;
+// IM[58] <= 8'h5e;
+// IM[59] <= 8'h01;
+// IM[60] <= 8'h23;
+// IM[61] <= 8'h34;
+// IM[62] <= 8'h4e;
+// IM[63] <= 8'h01;
+// IM[64] <= 8'h93;
+// IM[65] <= 8'h84;
+// IM[66] <= 8'h14;
+// IM[67] <= 8'h00;
+// IM[68] <= 8'he3;
+// IM[69] <= 8'hc0;
+// IM[70] <= 8'h84;
+// IM[71] <= 8'hfe;
+// IM[72] <= 8'he3;
+// IM[73] <= 8'h08;
+// IM[74] <= 8'h00;
+// IM[75] <= 8'hfc;
+// IM[76] <= 8'h63;
+// IM[77] <= 8'h02;
+// IM[78] <= 8'h00;
+// IM[79] <= 8'h00;
+
+
+IM[0] <= 8'h13; // addi x10, x0, 0
+IM[1] <= 8'h05;
+IM[2] <= 8'h00;
+IM[3] <= 8'h10;
+IM[4] <= 8'h93; // addi x11, x0, 4
+IM[5] <= 8'h05;
+IM[6] <= 8'h40;
+IM[7] <= 8'h00;
+IM[8] <= 8'h93; // addi x21, x10, 0
+IM[9] <= 8'h0a;
+IM[10] <= 8'h05;
+IM[11] <= 8'h00;
+IM[12] <= 8'h13; // addi x22, x11, 0
+IM[13] <= 8'h8b;
+IM[14] <= 8'h05;
+IM[15] <= 8'h00;
+IM[16] <= 8'h93; // addi x19, x0, 0
+IM[17] <= 8'h09;
+IM[18] <= 8'h00;
+IM[19] <= 8'h00;
+IM[20] <= 8'h63; // blt x19, x22, 8 (continue)
+IM[21] <= 8'hc4;
+IM[22] <= 8'h69;
+IM[23] <= 8'h01;
+IM[24] <= 8'h63; // beq x0, x0, 56 (finish) 
+IM[25] <= 8'h0c;
+IM[26] <= 8'h00;
+IM[27] <= 8'h02;
+IM[28] <= 8'h13; // addi x20, x19, -1 # continue
+IM[29] <= 8'h8a;
+IM[30] <= 8'hf9;
+IM[31] <= 8'hff;
+IM[32] <= 8'h63; // blt x20, x0, 40 (exit2)
+IM[33] <= 8'h44;
+IM[34] <= 8'h0a;
+IM[35] <= 8'h02;
+IM[36] <= 8'h93; // slli
+IM[37] <= 8'h12;
+IM[38] <= 8'h3a;
+IM[39] <= 8'h00;
+IM[40] <= 8'hb3;  
+IM[41] <= 8'h82;
+IM[42] <= 8'h5a;
+IM[43] <= 8'h00;
+IM[44] <= 8'h03; // ld x6, 0(x5)
+IM[45] <= 8'hb3;
+IM[46] <= 8'h02;
+IM[47] <= 8'h00;
+IM[48] <= 8'h83; // ld x7, 8(x5)
+IM[49] <= 8'hb3;
+IM[50] <= 8'h82;
+IM[51] <= 8'h00;
+IM[52] <= 8'h63; // blt x6, x7, exit2
+IM[53] <= 8'h4a;
+IM[54] <= 8'h73;
+IM[55] <= 8'h00;
+IM[56] <= 8'h23; // sd x7, 0(x5)  
+IM[57] <= 8'hb0;
+IM[58] <= 8'h72;
+IM[59] <= 8'h00;
+IM[60] <= 8'h23; // sd x6, 8(x5)
+IM[61] <= 8'hb4;
+IM[62] <= 8'h62;
+IM[63] <= 8'h00;
+IM[64] <= 8'h13; // addi x20, x20, -1
+IM[65] <= 8'h0a;
+IM[66] <= 8'hfa;
+IM[67] <= 8'hff;
+IM[68] <= 8'he3; // beq x0, x0, for2
+IM[69] <= 8'h0e;
+IM[70] <= 8'h00;
+IM[71] <= 8'hfc;
+IM[72] <= 8'h93; // addi x19, x19, 1
+IM[73] <= 8'h89;
+IM[74] <= 8'h19;
+IM[75] <= 8'h00;
+IM[76] <= 8'he3; // beq x0, x0, For1
+IM[77] <= 8'h04;
+IM[78] <= 8'h00;
+IM[79] <= 8'hfc;
+
+end
+always @(*)
+begin 
+    Instruction <= {IM[Instr_Addr+3],IM[Instr_Addr+2],IM[Instr_Addr+1],IM[Instr_Addr]};
+end 
+
 endmodule
