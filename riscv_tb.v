@@ -3,7 +3,7 @@
 module risc_V_TB();
     reg clk, reset;
     
-    RISC_V_Processor RISC (clk, reset);
+    RISC_V_Pipelined_Processor RISC (clk, reset);
     initial
     begin  
         clk = 0;

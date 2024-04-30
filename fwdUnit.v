@@ -1,42 +1,18 @@
-module fwdUnit
-(
-    input [4:0] EXMEM_rd, MEMWB_rd,
-    input [4:0] IDEX_rs1, IDEX_rs2,
-    input EXMEM_RegWrite, EXMEM_MemtoReg,
-    input MEMWB_RegWrite,
-    output reg [1:0] fwd_A, fwd_B
-);
+`timescale 1ns / 1ps
 
-always @(*) begin
-
-    if (EXMEM_rd == IDEX_rs1 && EXMEM_RegWrite && EXMEM_rd != 0) 
-        begin
-            fwd_A = 2'b10;
-        end
-    else if (MEMWB_RegWrite && MEMWB_rd!=0 && MEMWB_rd==IDEX_rs1 )
-        begin
-            fwd_A = 2'b01;
-        end
-    else
-        begin
-            fwd_A = 2'b00;
-        end
+module fwdUnit(
+    input clk,
     
+    input [4:0] ex_mem_rd, 
+    input ex_mem_RW,
+    input [4:0] mem_wb_rd,
+    input mem_wb_RW,
+    input [4:0] id_ex_rs1, id_ex_rs2,
+        
+    output wire [1:0] forwardA, forwardB
+    );
     
-    if ((EXMEM_rd == IDEX_rs2) && (EXMEM_RegWrite) && (EXMEM_rd != 0))
-        begin
-            fwd_B = 2'b10;
-        end
+    assign forwardA = (ex_mem_RW & (ex_mem_rd != 0) & (ex_mem_rd == id_ex_rs1)) ? 2'b10 : (mem_wb_RW & (mem_wb_rd != 0) & (mem_wb_rd == id_ex_rs1)) ? 2'b01 : 0;
+    assign forwardB = (ex_mem_RW & (ex_mem_rd != 0) & (ex_mem_rd == id_ex_rs2)) ? 2'b10 : (mem_wb_RW & (mem_wb_rd != 0) & (mem_wb_rd == id_ex_rs2)) ? 2'b01 : 0;
     
-    else if (MEMWB_RegWrite && MEMWB_rd!=0 && MEMWB_rd==IDEX_rs2)
-        begin
-            fwd_B = 2'b01;
-        end
-    
-    else 
-        begin
-            fwd_B = 2'b00;
-        end
-end
-
-endmodule // Forwarding_Unit
+endmodule
